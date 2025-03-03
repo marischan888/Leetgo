@@ -1,31 +1,32 @@
 /**
  * Question: 154, https://leetcode.com/problems/find-minimum-in-rotated-sorted-array-ii/description/
  * Level: Hard
- * This is an important question for excluding.
- * Type: BS in an unordered and dynamic target.
+ * This is an important question for unordered and duplicated BS.
  */
 public class P154 {
 
     public static int findMin(int[] nums) {
         int left = 0;
         int right = nums.length - 1;
-        int target = nums[right];
-        while (left <= right){
-            int mid = left + (right - left) / 2;
-            if (nums[mid] < target){
-                target = nums[mid];
-                right = mid;
-            } else if (nums[mid] == target) {
-                if (left == right) {
-                    break;
-                }
-                // Cant figure out
-            } else {
-                left = mid + 1;
-            }
 
+        while (left < right) {
+            int mid = left + (right - left + 1)/2;
+            if (nums[left] != nums[right]) {
+                if (nums[left] < nums[mid] && nums[left] < nums[right]) {
+                    right = right - 1;
+                } else {
+                    left = left + 1;
+                }
+            } else {
+                if (nums[left] < nums[mid]) {
+                    left = left + 1;
+                } else {
+                    right = right - 1;
+                    left = left + 1;
+                }
+            }
         }
-        return target;
+        return nums[left];
     }
 
     public static void main(String[] args) {

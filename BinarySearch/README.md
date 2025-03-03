@@ -4,35 +4,49 @@ Recursively reduction to reach the target. <br>
 Almost all the questions can be solved by recursion.
 ## Time Complexity
 O(logn)
-## Ideas
-### Loop Condition 
-1. if(nums[mid] == target) inside the loop. (P704) <br>
-while(left <= right): search all the elements. <br>
-**This is for the target must be inside the given array.**
-2. ***if*** outside the loop for additional check. (P34, P135...) <br>
-while(left < right): search one element left (target). <br>
-**This is for the target might not be found.**
+## Key Ideas
+1. Choosing looping condition:
+   1. (left <= right): go through **all** the element.
+   2. (left < right): will have one element left. **Need to double-check the last element.**
+2. Choosing narrow interval, need to think about:
+   * **Base Case** like when the nums has only two elements [a, b] (or other), how to set mid/ left and right. --> **Recursion**
+   * what interval u want.
    
-### Excluding the space: Two mids (left mid and right mid)
-- mid = left + (right - left) / 2 
-- mid = left + (right - left + 1) / 2
-
-This is based on how you design the exclusion ways, <- | or | ->. **(P34 vs P135)** <br> 
-To avoid the misuse of mid and lead to an infinite loop, can use the case with two element list like [1, 2] to think about.
-   
-## Questions Types and Related Questions
+## Related Questions
 ### Binary Search on an array (BS the position)
 1. P704 -- Easy
 2. P35 -- Easy
-3. P34 -- Medium (IMPORTANT) -> Idea 2 is useful in the boundary definition.
-4. P153 -- Medium (IMPORTANT) -> unordered list and dynamic target.
-5. P154 -- Hard ?
+3. P34 -- Medium (IMPORTANT) -> It shows deeper on how to narrow. 
+4. P153 -- Medium (IMPORTANT) -> Unordered list and dynamic target.
+5. P154 -- Hard (IMPORTANT) --> P153 with unique number.
+6. P33
+7. P81
+8. P278
+9. P374
+10. P852
+11. P1095
+12. P4
 ### Binary Search the Int if we know its interval
 1. P69 -- Easy (Tricky) -> overflow avoiding and BS in the naturally ascending Int.
 2. P1300 -- Medium -> unordered list
-3. P287 ?
+3. P287 
 ### Binary Search in the case with complex filter condition
+1. P875 -- Medium (Tricky & Classic) -> Carefully choose the narrow way
+2. P410
+3. P1011
+4. P1482
 
-## Conclusion for BS
-1. Fist, need to think about what we want to search.
-2. Second, need to design how to divide the interval (exclusion)
+Notice: This kind of questions is more on **understanding** and BS is not the only way to solve.
+
+How?
+- Analysis the relationship between target we want to find and the given variables. --> Find out the target's constraints. --> Then u can use BS 
+- Be aware of the given limitation from questions
+
+## Conclusion
+* Start from single mid(pointer)
+* Dont put too many "if". Find out the base case to find out the evidence which can decide how to narrow the interval. (P153, P154) -- KEY POINT
+* Need to design how to divide the interval (exclusion)
+* Need to read the questions carefully, like ordered? duplicated? ...
+
+## Others
+* (7 + 3 - 1)/3 = 3 is the best way to optimal the integer division (if u want 7/2 = 3). -> P875
