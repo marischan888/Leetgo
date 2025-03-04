@@ -6,22 +6,31 @@
 public class P153 {
 
     public static int findMin(int[] nums) {
-        int left = 0;
-        int right = nums.length - 1;
+        int left = -1;
+        int right = nums.length;
+        int ref_l = nums[left + 1];
+        int ref_r = nums[right - 1];
+        // special case: the array is already sorted
+        if (ref_l <= ref_r) {
+            return ref_l;
+        }
 
-        while (left < right) {
-            int mid = left + (right - left + 1)/2;
-            if (nums[left] < nums[mid] && nums[left] < nums[right]) {
-                left = left + 1;
+        while (left + 1 != right) {
+            int mid = (left + right) / 2;
+            // blue zone: [left, mid], no min zone
+            if (ref_l <= nums[mid]){
+                left = mid;
             } else {
-                right = right - 1;
+                // red zone: (mid, right], have min zone
+                right = mid;
             }
         }
-        return nums[left];
+        // min in the red zone
+        return nums[right];
     }
 
     public static void main(String[] args) {
-        int[] nums = {1, 3, 5};
+        int[] nums = {2, 0, 1};
         System.out.println(findMin(nums));
     }
 }

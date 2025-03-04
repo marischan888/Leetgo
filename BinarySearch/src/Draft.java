@@ -15,7 +15,7 @@ public class Draft {
 
         while (left <= right) {
             result = min(result, nums[mid]);
-            mid = left + (right - left + 1)/2;
+            mid = left + (right - left)/2;
             if (nums[left] == nums[right]) {
                 if (nums[left] >= nums[mid]) {
                     left = left + 1;
@@ -60,7 +60,7 @@ public class Draft {
     }
 
     public static void main(String[] args) {
-        int[] nums = {2, 1};
+        int[] nums = {3, 1, 3};
         System.out.println(findMin(nums));
     }
 }

@@ -1,6 +1,7 @@
 # Array Related Problems
 ## Methods
-sliding window and double(multi) pointers
+1. sliding window
+2. double(multi) pointers
 ## Notice
 1. String aka char array
 2. The special cases: len == 1 or len == 0

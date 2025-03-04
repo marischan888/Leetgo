@@ -6,6 +6,7 @@ import static java.lang.Math.min;
 public class P76 {
     public static String minWindow(String s, String t) {
 
+
                 int[] window = new int[128];
                 int[] pattern = new int[128];
 
